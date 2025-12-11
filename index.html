@@ -3,132 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <title>Companies and Data Types</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      /* Adjust this if the header cut is too big or small */
-      --header-height: 180px;
-      --top-bar-height: 40px;
+      /* Height of the fixed header slice */
+      --header-height: 160px;
+
+      /* Shift the header image UP to show only the top labels */
+      /* Adjust this number until the header looks perfect */
+      --header-shift: -0px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
       padding: 0;
       background: #000;
-      color: #f5f5f5;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #fff;
+      font-family: -apple-system, system-ui, sans-serif;
     }
 
-    body {
-      min-height: 100vh;
-    }
+    body { min-height: 100vh; }
 
-    .top-bar {
+    .top-info {
+      background: #111;
+      padding: 10px 12px;
+      font-size: 14px;
+      border-bottom: 1px solid #333;
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      height: var(--top-bar-height);
-      background: #111;
-      border-bottom: 1px solid #333;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 12px;
-      font-size: 13px;
-      z-index: 30;
+      z-index: 20;
     }
 
-    .top-bar-title {
-      font-weight: 600;
-    }
-
-    .top-bar-hint {
-      font-size: 11px;
-      opacity: 0.7;
-    }
-
-    .header-shell {
+    .sticky-header {
       position: fixed;
-      top: var(--top-bar-height);
+      top: 48px;
       left: 0;
       right: 0;
-      z-index: 20;
+      height: var(--header-height);
+      overflow: hidden;
       background: #000;
+      z-index: 15;
       border-bottom: 1px solid #333;
     }
 
-    .header-inner {
-      height: var(--header-height);
-      max-width: 1100px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-
-    .header-inner img {
+    .sticky-header img {
       width: 100%;
       display: block;
+      transform: translateY(var(--header-shift));
     }
 
-    .page-content {
+    .content {
+      padding-top: calc(48px + var(--header-height) + 12px);
       max-width: 1100px;
       margin: 0 auto;
-      padding: calc(var(--top-bar-height) + var(--header-height) + 12px) 0 24px 0;
     }
 
-    .page-content img.full-chart {
+    .content img {
       width: 100%;
       height: auto;
       display: block;
-      margin-top: calc(-1 * var(--header-height));
-    }
-
-    @media (max-width: 600px) {
-      .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        height: auto;
-        padding: 6px 10px;
-      }
-
-      .top-bar-hint {
-        margin-top: 2px;
-      }
-
-      .header-shell {
-        top: calc(var(--top-bar-height) + 10px);
-      }
-
-      .page-content {
-        padding-top: calc(var(--top-bar-height) + var(--header-height) + 24px);
-      }
     }
   </style>
 </head>
 <body>
-  <!-- Fixed bar at the very top -->
-  <div class="top-bar">
-    <div class="top-bar-title">Companies and Data Types</div>
-    <div class="top-bar-hint">Scroll the page - the header stays at the top.</div>
+
+  <div class="top-info">
+    Companies & Data Types — scroll normally (iPhone friendly)
   </div>
 
-  <!-- Fixed header slice of the image -->
-  <div class="header-shell">
-    <div class="header-inner">
-      <img src="https://www.caprice-community.net/wp-content/uploads/2021/02/companies-most-data.png"
-           alt="Companies and data types - header" />
-    </div>
+  <!-- FIXED HEADER SECTION (we crop it manually with CSS) -->
+  <div class="sticky-header">
+    <img src="https://www.caprice-community.net/wp-content/uploads/2021/02/companies-most-data.png" />
   </div>
 
-  <!-- Main page scroll with full image -->
-  <div class="page-content">
-    <img class="full-chart"
-         src="https://www.caprice-community.net/wp-content/uploads/2021/02/companies-most-data.png"
-         alt="Companies and data types - full chart" />
+  <!-- FULL IMAGE BELOW -->
+  <div class="content">
+    <img src="https://www.caprice-community.net/wp-content/uploads/2021/02/companies-most-data.png" />
   </div>
+
 </body>
 </html>
